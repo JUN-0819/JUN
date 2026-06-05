@@ -248,7 +248,7 @@ export default function CategoryTable({ stocks: rawStocks, categoryLabel }: Prop
                     {isLoading ? (
                       <div className={`${SKELETON} w-16 ml-auto`} />
                     ) : d ? (
-                      <span className={`font-semibold tabular-nums text-sm ${isUp ? "text-red-600" : "text-blue-600"}`}>
+                      <span className="font-semibold tabular-nums text-sm text-gray-900">
                         {d.currency === "KRW"
                           ? d.price.toLocaleString("ko-KR")
                           : fmt(d.price)}
