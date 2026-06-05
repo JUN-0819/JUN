@@ -10,16 +10,12 @@ export async function GET(request: NextRequest) {
   try {
     const result = await yf.search(q, { newsCount: 0, quotesCount: 8 });
     const quotes = (result.quotes || [])
-      .filter((item: { quoteType?: string }) =>
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .filter((item: any) =>
         ["EQUITY", "ETF", "MUTUALFUND", "INDEX"].includes(item.quoteType ?? "")
       )
-      .map((item: {
-        symbol?: string;
-        shortname?: string;
-        longname?: string;
-        quoteType?: string;
-        exchDisp?: string;
-      }) => ({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .map((item: any) => ({
         symbol: item.symbol,
         name: item.shortname || item.longname || item.symbol,
         type: item.quoteType,
